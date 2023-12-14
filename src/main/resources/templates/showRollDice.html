@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Roll</title>
+</head>
+<body>
+    <h1>Roll Dice</h1>
+    <button type="button" th:onclick='rollDice()'>Roll Dice</button>
+<div id="messages">
+    <ul>
+        <li th:each="message: ${messages}">
+            <p th:text="${message}"></p>
+        </li>
+    </ul>
+</div>
+
+
+    <script th:inline="javascript">
+        function rollDice() {
+            fetch('/roll-dice')
+                .then(response => response.text())
+                .then(data => {
+                    // update the page with the new message
+                    document.getElementById('messages').innerHTML += '<p>' + data + '</p>';
+                });
+        }
+    </script>
+</body>
+</html>

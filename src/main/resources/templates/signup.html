@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+
+<!--     It would be nice if we could display a generic heading if there is no email attribute present, and a more specific one if there is one present. In this situation, we can use the Thymeleaf th:if attribute.-->
+
+    <h1 th:if="${email != null}">Thanks for signing up, <span th:text="${email}"></span></h1>
+    <h1 th:if="${email == null}">Welcome!</h1>
+
+
+<!--   To avoid creating arbitrary span elements, we may also use Thymeleaf inlined expressions. These are placed between double brackets. In the above example, we could write our conditional as follows:-->
+
+<!--<h1 th:if="${email != null}">Thanks for signing up, [[${email}]]</h1>-->
+
+
+
+
+
+<!--    <h1 th:text="${email}"></h1>-->
+
+    <h2>Sign up for our newsletter!</h2>
+    <form action="/signup" method="post">
+        <label for="email">Your Email:</label>
+            <input type="email" name="email" id="email">
+            <button>Sign up now</button>
+    </form>
+</body>
+</html>
